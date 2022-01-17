@@ -1,6 +1,6 @@
 // Function displays current time
 
-// display time instanly when page is loaded
+// display initial time instanly when page is loaded
 var timeEl = $("#currentDay");
 timeEl.text(moment().format("MMM Do YYYY,h:mm:ss a"))
 
@@ -27,32 +27,37 @@ function createRow(workHours) {
 
     // create a div with class "row"
     var row = $("<div>").attr("class", "row");
-    // create a div with class "col-2"
-    var timeCol = $("<div>").attr("class", "col-2");
+    // create a div with class "col-1"
+    var timeCol = $("<div>").attr("class", "col-1 time");
     // create a span with "time:00" text
     var timeSpan = $("<span>").text(workHours + ":00");
     // display the content
     timeCol.append(timeSpan);
     row.append(timeCol);
 
-    // resposive color
+    // Resposive CSS color
     // select current time
     var timeNow = moment();
 
+    // check time correspondly 
+    // colume hour < current hour = past
     var isPast = workHours < Number(timeNow.format("H"));
+    // colume hour between current hour and current hour +1 = current
     var isNow = workHours >= Number(timeNow.format("H")) && workHours < Number(timeNow.format("H") + 1);
+    // colume hour > current hour =future
     var isFuture = workHours > Number(timeNow.format("H"));
 
+    // create a responsive element
     var cssClass;
-
+    // difine cssClass responsively 
     if (isPast) { cssClass = 'past' };
     if (isNow) { cssClass = 'present' };
     if (isFuture) { cssClass = 'future' };
 
-    // create a div with class "col-8"
-    var textCol = $("<div>").attr("class", "col-8 " + cssClass);
+    // create a div with class "col-10",add responsive class
+    var textCol = $("<div>").attr("class", "col-10 " + cssClass);
     // create textarea 
-    var textArea = $("<textarea>").attr("class", cssClass);
+    var textArea = $("<textarea>").attr("class", "col-12 " + cssClass);
 
     // Check if there's any exisiting content in Local storage
     var exisitingContent = localStorage.getItem(workHours + ":00");
@@ -65,13 +70,14 @@ function createRow(workHours) {
     textCol.append(textArea);
     row.append(textCol);
 
-    // create a div with class "col-2"
-    var btnCol = $("<div>").attr("class", "col-2");
-    // create a button with class "button-main"
-    var buttonMain = $("<button>").attr("class", "button-main");
-    // create a icon with class "fas fa-archive"
+    // create a div with class "col-1"
+    var btnCol = $("<div>").attr("class", "col-1 ");
+    // create a button with bootstrap class
+    var buttonMain = $("<button>").attr("class", "btn btn-primary");
+    // create a icon with fontawesome icon class "fas fa-archive"
     var iconSave = $("<i>").attr({ class: "fas fa-archive", id: "save-icon" });
 
+    // append corresponding
     buttonMain.append(iconSave);
     btnCol.append(buttonMain);
     row.append(btnCol);
@@ -80,7 +86,7 @@ function createRow(workHours) {
 
 }
 // generate all work hour time block
-var workHours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+var workHours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
 for (i = 0; i < workHours.length; i++) {
     var displayHours = workHours[i]
@@ -88,69 +94,28 @@ for (i = 0; i < workHours.length; i++) {
     timeBlock.append(rowDisplay);
 }
 
-// var rowCreate = createRow(10);
-// timeBlock.append(rowCreate);
-
-
 // when the user click on the save button-
-$(document).on("click", ".button-main", function(event) {
-        // save the content in the current textarea to local storage-
+$(document).on("click", ".btn", function(event) {
+    // function that saves the content in the corresponding textarea to local storage-
 
-        // 1. grab the content of textarea
+    // 1. grab the content of textarea
 
-        // jqwery button element 
-        var jqButton = $(event.target);
-        // locate target textarea
-        var textEl = jqButton.parent().prev().children();
-        // get the value from textarea
-        var userInput = textEl.val()
-        console.log(userInput);
+    // jqwery button element 
+    var jqButton = $(event.target);
+    // locate target textarea
+    var textEl = jqButton.parent().prev().children();
+    // get the value from textarea
+    var userInput = textEl.val()
+    console.log(userInput);
 
-        // 2. use the time as key of local Storage
+    // 2. use the time as key of local Storage
 
-        // locate corresponding span elements and its text content
-        var timeSpan = jqButton.parent().prev().prev().children();
-        var timeSpanText = timeSpan.text();
+    // locate corresponding span elements and its text content
+    var timeSpan = jqButton.parent().prev().prev().children();
+    var timeSpanText = timeSpan.text();
 
-        // 3. Save
+    // 3. Save to local storage , give key and value accordingly
 
-        localStorage.setItem(timeSpanText, userInput);
+    localStorage.setItem(timeSpanText, userInput);
 
-
-
-
-
-    }
-
-);
-
-
-
-
-
-// color background -past, present, future. from CSS
-
-// Display Responsive Time 
-
-// var currenthourEl = moment().format("h");
-
-// var ampmEl = moment().format("A")
-
-
-// var hourEl = $('.col-2');
-
-// hourEl.text(ampmEl + " " + currenthourEl + ":00");
-// console.log(hourEl.value);
-// console.log(currenthourEl - 1);
-
-// for (let i = 0; i < hourEl.length; i++) {
-//     hourEl[i].text(ampmEl + " " + currenthourEl - 3 + [i] + ":00");
-
-// }
-
-
-
-// Add Input
-
-
-// Save Function
+});

@@ -5,14 +5,7 @@ body {
 }
 
 
-/* textarea {
-    background: transparent;
-    border: none;
-    resize: none;
-    color: #000000;
-    border-left: 1px solid black;
-    padding: 10px;
-} */
+/* Header */
 
 .jumbotron {
     text-align: center;
@@ -20,58 +13,71 @@ body {
     color: black;
     border-radius: 0;
     border-bottom: 10px solid black;
-    padding: 20px;
+    margin-bottom: 0px;
+    padding: 32px 32px;
+    background-color: rgb(112, 206, 209);
 }
 
 
-/* .description {
-    white-space: pre-wrap;
-} */
+/* timeblock */
+
+.timeblock {
+    margin-top: 0px;
+    padding: 30px 60px;
+}
 
 .row {
     white-space: pre-wrap;
-    height: 80px;
+    height: 70px;
     padding: 0 60px;
 }
 
 .row div {
-    text-align: center;
-    border-radius: 15px;
-    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.hour {
-    background-color: #ffffff;
-    color: #000000;
-    border-top: 1px dashed #000000;
+.row div span {
+    font-size: 18px;
 }
 
-.past {
-    background-color: #d3d3d3;
-    color: white;
+.col-1 {
+    border: 2px solid white;
+    padding: 0px;
 }
 
-.present {
-    background-color: #ff6961;
-    color: white;
+.time {
+    border-radius: 8px;
+    font-weight: 700;
+    background-color: cornflowerblue;
+    font-style: italic;
 }
 
-.future {
-    background-color: #77dd77;
-    color: white;
+.col-10 {
+    border: 1.5px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.saveBtn {
-    border-left: 1px solid black;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background-color: #06aed5;
-    color: white;
+.row div textarea {
+    border: none;
+    resize: none;
+    cursor: pointer;
+    height: 50px;
 }
 
-.saveBtn i:hover {
-    font-size: 20px;
-    transition: all 0.3s ease-in-out;
+.row div button {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.row div button:hover {
+    transform: scale(0.95);
 }
 
 
@@ -79,4 +85,25 @@ body {
 
 #save-icon {
     pointer-events: none;
+}
+
+
+/* responsive color */
+
+.past {
+    background-color: #bccaac;
+    color: black;
+    font-weight: 600;
+}
+
+.present {
+    background-color: #ff6961;
+    color: black;
+    font-weight: 600;
+}
+
+.future {
+    background-color: #6ed16e;
+    color: black;
+    font-weight: 600;
 }
