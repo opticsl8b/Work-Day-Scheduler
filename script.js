@@ -2,11 +2,11 @@
 
 // display initial time instanly when page is loaded
 var timeEl = $("#currentDay");
-timeEl.text(moment().format("MMM Do YYYY,h:mm:ss a"))
+timeEl.text(moment().format("MMM Do YYYY -- HH: mm: ss "))
 
 // update timer every second
 setInterval(function() {
-    timeEl.text(moment().format("MMM Do YYYY,h:mm:ss a"));
+    timeEl.text(moment().format("MMM Do YYYY -- HH: mm: ss "));
 }, 1000);
 
 // Generate all the timeblock rows when page loads
@@ -85,7 +85,7 @@ function createRow(workHours) {
     return row;
 
 }
-// generate all work hour time block
+// generate all work hour time block from the array
 var workHours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
 for (i = 0; i < workHours.length; i++) {
